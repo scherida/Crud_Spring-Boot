@@ -4,26 +4,31 @@ import com.curso.boot.dao.CargoDao;
 import com.curso.boot.domain.Cargo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
-import javax.transaction.Transactional;
+
 import java.util.List;
 
-@Service @Transactional
+@Service
+@Transactional(readOnly = true)
 public class CargoServiceImpl implements CargoService {
 
     @Autowired
     private CargoDao dao;
 
+    @Transactional(readOnly = false)
     @Override
     public void salvar(Cargo cargo) {
         dao.save(cargo);
     }
 
+    @Transactional(readOnly = false)
     @Override
     public void editar(Cargo cargo) {
         dao.update(cargo);
     }
 
+    @Transactional(readOnly = false)
     @Override
     public void excluir(Long id) {
         dao.delete(id);
