@@ -3,6 +3,7 @@ package com.curso.boot.domain;
 import javax.persistence.*;
 import java.util.List;
 
+@SuppressWarnings("serial")
 @Entity
 @Table(name = "DEPARTAMENTOS")
 public class Departamento extends AbstractEntity<Long>{

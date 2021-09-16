@@ -2,15 +2,16 @@ package com.curso.boot.service;
 
 import com.curso.boot.dao.DepartamentoDao;
 import com.curso.boot.domain.Departamento;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
 @Service
-@Transactional(readOnly = true)
 public class DepartamentoServiceImpl implements DepartamentoService{
 
+    @Autowired
     private DepartamentoDao dao;
 
     @Transactional(readOnly = false)
@@ -31,11 +32,13 @@ public class DepartamentoServiceImpl implements DepartamentoService{
         dao.delete(id);
     }
 
+    @Transactional(readOnly = true)
     @Override
     public Departamento buscarPorId(Long id) {
         return dao.findById(id);
     }
 
+    @Transactional(readOnly = true)
     @Override
     public List<Departamento> buscartodos() {
         return dao.findAll();
